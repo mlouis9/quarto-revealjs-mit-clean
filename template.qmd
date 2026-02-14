@@ -1,13 +1,13 @@
 ---
-title: A title
-subtitle: A subtitle
+title: Quarto reveal.js MIT clean
+subtitle: A minimalist (MIT) presentation theme
 format: clean-revealjs
 author:
-  - name: Your Name
-    orcid: 0000-0000-0000-0000
-    email: alias@email.com
-    affiliations: Your Institution
-date: last-modified
+  - name: Matthew Louis
+    orcid: 0000-0001-9581-5744
+    email: mlouis9@mit.edu
+    affiliations: Massachusetts Institute of Technology
+date: 02-14-2026
 ---
 
 ## Example slide

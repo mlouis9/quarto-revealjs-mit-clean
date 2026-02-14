@@ -18,3 +18,6 @@ contributes:
             <script src="mathjax-config.js"></script>
       format-resources:
         - mathjax-config.js
+      include-after-body: includes/mit-logo.html
+      resources:
+        - assets/mit_logo_std_rgb_mit-red.svg

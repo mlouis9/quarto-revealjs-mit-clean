@@ -1,351 +1,364 @@
 /*-- scss:defaults --*/
 
-// Custom colours and variables
+// 1. MIT Color Palette
+$mit-red: #750014;
+$mit-gray: #8b959e;
+$mit-black: #000000;
+$mit-white: #ffffff;
 
-$jet: #131516;
-$accent: #107895;
-$accent2: #9a2515;
-// $accent2: #e64173;
-$right-arrow: "\2192"; // Unicode character for right arrow
+// 2. Mapping MIT colors to Clean Theme Variables
+$body-bg: $mit-white;
+$body-color: $mit-black;
 
-// fonts
+// Primary accent (Links, H3, bullets) -> MIT Red
+$accent: $mit-red;
+// Secondary accent (Alerts, H4) -> MIT Gray
+$accent2: $mit-gray;
 
-/*
-Note: This theme uses the Roboto font family, which it imports from Google
-  Fonts to ensure consistent weighting in addition to availability. While
-  you can use a local installation of Roboto, this is generally not 
-  recommended since the weighting will likely be wrong (probably too
-  light). OTOH, importing from Google Fonts can cause some issues in
-  certain secure environments due the external CDN (see:
-  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). If
-  that's the case for you, simply comment out the `@import url(...)` line
-  below and it will default for the default Sans Serif font on your system
-  (e.g., Helvetica on a Mac). Circling back to the earlier point about
-  preserving consistent font weights, you may also wish to remove "Roboto"
-  from the choice set if the family is installed locally.
-*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap');
+$link-color: $mit-red;
+$selection-bg: rgba($mit-red, 0.3); // Highlighting text
 
-$font-family-sans-serif: "Roboto", sans-serif !default;
-$presentation-heading-font: "Roboto", sans-serif !default;
+// 3. Fonts
+// We are disabling the Google Fonts import from 'clean' to use 
+// the system fonts requested in your 'theme.scss' (Helvetica/Arial)
 
-$presentation-heading-color: $jet !default;
-$presentation-heading-font-weight: lighter;
-//$presentation-heading-line-height: 2;
-//$presentation-block-margin: 28px;
+$font-family-sans-serif: "Helvetica Neue", Arial, sans-serif !default;
+$presentation-heading-font: "Helvetica Neue", Arial, sans-serif !default;
+
+$presentation-heading-color: $mit-red !default; // Headers are now MIT Red
+$presentation-heading-font-weight: bold; // Adjusted to match standard academic styles
 $presentation-font-size-root: 32px;
 
-// colors
-//$body-bg: #f0f1eb !default;
-$body-color: $jet !default;
-$link-color: $accent !default;
-$selection-bg: #26351c !default;
+// Arrow for sub-lists
+$right-arrow: "\2192";
 
 
 /*-- scss:rules --*/
 
+// --- MIT SPECIFIC UTILITIES ---
+
+// 1. Bottom-right fixed MIT logo (Manual insertion)
+.mit-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 30;
+    pointer-events: none;
+}
+
+.mit-logo img {
+    height: 40px;
+}
+
+// 2. Side Accent Borders
+.reveal section {
+    border-left: 6px solid transparent;
+}
+
+.reveal section.section-accent {
+    border-left: 6px solid $mit-red;
+}
+
+// --- STANDARD CLEAN THEME RULES (Modified) ---
+
 .reveal a {
-  line-height: 1.5em;
+    line-height: 1.5em;
 }
 
 .reveal p {
-  // font-weight: 300;
-  font-weight: lighter;
-  margin-top: 1.25em;
+    font-weight: normal; // Reverted from 'lighter' for better readability with Arial
+    margin-top: 1.25em;
 }
 
 // title and headings
 
 #title-slide {
-  text-align: left;
+    text-align: left;
 
-  .title {
-    color: $body-color;
-    font-size: 1.4em;
-    // font-weight: 350;
-    font-weight: lighter;
-  }
-
-  .subtitle {
-    color: $accent;
-    font-style: italic;
-    margin-top: 0em;
-    font-weight: lighter;
-  }
-
-  .institute,
-  .quarto-title-affiliation,
-  .quarto-title-author-email {
-    font-style: italic;
-    // font-size: 80%;
-    // color: #7F7F7F;
-  }
-
-  .author,
-  .quarto-title-author-name {
-    color: $body-color;
-  }
-
-  .quarto-title-authors {
-    display: flex;
-    justify-content: left;
-
-    .quarto-title-author {
-      padding-left: 0em;
-      padding-right: 0em;
-      width: 100%;
+    .title {
+        color: $presentation-heading-color;
+        font-size: 1.6em;
+        font-weight: bold;
     }
-  }
 
+    .subtitle {
+        color: $mit-gray; // Subtitle is accent gray
+        font-style: italic;
+        margin-top: 0em;
+        font-weight: normal;
+    }
+
+    .institute,
+    .quarto-title-affiliation,
+    .quarto-title-author-email {
+        font-style: italic;
+        color: $mit-gray;
+    }
+
+    .author,
+    .quarto-title-author-name {
+        color: $body-color;
+    }
+
+    .quarto-title-authors {
+        display: flex;
+        justify-content: left;
+
+        .quarto-title-author {
+            padding-left: 0em;
+            padding-right: 0em;
+            width: 100%;
+        }
+    }
 }
 
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    color: $mit-red;
+    font-family: $presentation-heading-font;
+}
 
 .reveal h2 {
-  // font-weight: 350;
-  font-weight: lighter;
-  font-size: 1.4em;
+    font-weight: bold;
+    font-size: 1.4em;
 }
 
 .reveal h3 {
-  color: $accent;
-  font-style: italic;
-  // font-weight: 350;
-  font-weight: lighter;
-  font-size: 0.95em;
+    color: $mit-gray; // H3 is gray
+    font-style: italic;
+    font-weight: normal;
+    font-size: 0.95em;
 }
 
 .reveal h4 {
-  color: $accent2;
-  // font-weight: 350;
-  font-weight: normal;
-  margin-top: 1.25em;
+    color: $mit-red;
+    font-weight: normal;
+    margin-top: 1.25em;
 }
 
 // alerts etc.
 
 .alert {
-  color: $accent2;
+    color: $mit-red;
+    font-weight: bold;
 }
 
 .fg {
-  color: var(--col, $jet);
+    color: var(--col, $body-color);
 }
 
 .bg {
-  background-color: var(--col, #fff);
-  padding: 0.1em;
-  border-radius: 5px;
-  display: inline-block;
+    background-color: var(--col, #fff);
+    padding: 0.1em;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 // lists
 
-// Unordered lists
-
 .reveal ul {
-  // font-weight: 300;
-  font-weight: lighter;
-  padding-left: 16px;
+    font-weight: normal;
+    padding-left: 16px;
 
-  li::marker {
-    color: mix($accent, white, 70%);
-  }
+    li::marker {
+        color: $mit-red;
+    }
 }
 
 .reveal ul ul {
-  list-style: none;
+    list-style: none;
 
-  li:before {
-    content: $right-arrow;
-    color: mix($accent, white, 60%);
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    margin-right: 0.5em;
-  }
+    li:before {
+        content: $right-arrow;
+        color: $mit-gray;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        margin-right: 0.5em;
+    }
 }
-
-// Ordered lists
 
 .reveal ol {
-  // font-weight: 300;
-  font-weight: lighter;
-  padding-left: 16px;
+    font-weight: normal;
+    padding-left: 16px;
 
-  li::marker {
-    color: $accent;
-  }
+    li::marker {
+        color: $mit-red;
+    }
 }
 
-// Move "hamburger" menu button to top right
+// Navigation Controls
 
 .reveal .slide-menu-button {
-  position: fixed;
-  top: 6px;
-  right: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  pointer-events: none;
+    position: fixed;
+    top: 6px;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    pointer-events: none;
+    color: $mit-gray;
 }
 
-.reveal .slide-menu-button > * {
-  pointer-events: auto;
+.reveal .slide-menu-button>* {
+    pointer-events: auto;
 }
-
-// Same for chalkboard buttons (with an offset)
 
 .reveal .slide-chalkboard-buttons {
-  position: fixed;
-  top: 12px;
-  right: 24px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  pointer-events: none;
+    position: fixed;
+    top: 12px;
+    right: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    pointer-events: none;
+    color: $mit-gray;
 }
 
-.reveal .slide-chalkboard-buttons > * {
-  pointer-events: auto;
+.reveal .slide-chalkboard-buttons>* {
+    pointer-events: auto;
 }
 
-// Logo to the bottom-left
+// --- LOGO AND SLIDE NUMBER POSITIONING ---
+
+// Quarto Standard Logo override (if you use 'logo: mit.png' in yaml)
+// We move this to bottom RIGHT to match your request.
 .slide-logo {
-  display: block !important;
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 10px !important;
-  max-width: 150px; // Adjust if necessary
-  max-height: 50px;
-  width: auto !important;
-  color: $body-color !important;
+    display: block !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 30px !important;
+    left: unset !important; // Unset the default left positioning
+    max-width: 150px;
+    max-height: 50px;
+    width: auto !important;
+    z-index: 30;
 }
 
-// Also need to enforce slide numbers at bottom-right (if logo is present)
-.slide-number, .reveal.has-logo .slide-number {
-  bottom: 6px !important;
-  right: 10px !important;
-  top: unset !important;
-  color: #777777 !important;
+// Because the logo is now on the Right, we must move the Slide Number
+// to the LEFT to avoid overlap.
+.slide-number,
+.reveal.has-logo .slide-number {
+    bottom: 20px !important;
+    left: 20px !important; // Moved to left
+    right: unset !important;
+    top: unset !important;
+    color: $mit-gray !important;
 }
 
-// Beamer-style button link environment
+// Buttons
 
 .button {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: $accent;
-  border: 1px solid $accent;
-  color: #fff !important;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: $mit-red;
+    border: 1px solid $mit-red;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
 }
 
 .button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+    background-color: darken($mit-red, 10%);
+    border-color: darken($mit-red, 10%);
 }
 
 .button::before {
-  content: "▶";
-  margin-right: 5px;
+    content: "▶";
+    margin-right: 5px;
 }
 
 // tables
 
 .reveal table {
-  // height: auto; /* Adjust table width to fit content up to the available slide space */
-  margin: auto;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-size: 0.8em;
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.8em;
 }
 
 .reveal table th,
 .reveal table td {
-  border: none; /* Remove internal row lines */
-  padding: .23em; /* Adjust padding as needed */
-  text-align: left; /* Adjust text alignment as needed */
-  font-weight: lighter; /* Lighter font weight for main table text */
+    border: none;
+    padding: .23em;
+    text-align: left;
+    font-weight: normal;
 }
 
-/* Adds a bottom border to the table header row for distinction */
 .reveal table thead th,
 .reveal .slides table tr:last-child td,
 .reveal .slides table {
-  border-bottom: 2px solid #D3D3D3; /* Dark grey color for the bottom border */
+    border-bottom: 2px solid $mit-gray;
 }
 
-/* Make column headers bold */
 .reveal table thead th {
-  font-weight: bold;
+    font-weight: bold;
+    color: $mit-red;
 }
 
-/* Styling table captions */
 .reveal table caption {
-  color: #666666; /* Dark grey color for the caption */
-  font-variant: small-caps; /* Use small caps for the caption text */
+    color: $mit-gray;
+    font-variant: small-caps;
 }
 
-// Special catch for etable environment to ensure these table images
-// don't overflow the slide.
-// See: https://lrberge.github.io/fixest/articles/etable_new_features.html
-
+// Helper classes for columns (unchanged)
 .etable {
-  width: 100%;
-  height: calc(100% - 3em); /* Adjust 3em based on the height of your header, if necessary */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: calc(100% - 3em);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .etable img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
-// Change the relative widths of `output-location: column`. 
-// See: https://github.com/grantmcdermott/quarto-revealjs-clean/pull/16
-// Example usage:
-// ```{python}
-// #| echo: true
-// #| output-location: column
-// #| classes: columns3070
-// <code>
-// ```
-.reveal .columns3070 > div.column:first-child {
-  width: 30%;
+.reveal .columns3070>div.column:first-child {
+    width: 30%;
 }
+
 .reveal .columns3070 div.column:not(:first-child) {
-  width: 70%;
+    width: 70%;
 }
-.reveal .columns7030 > div.column:first-child {
-  width: 70%;
+
+.reveal .columns7030>div.column:first-child {
+    width: 70%;
 }
+
 .reveal .columns7030 div.column:not(:first-child) {
-  width: 30%;
+    width: 30%;
 }
-.reveal .columns4060 > div.column:first-child {
-  width: 40%;
+
+.reveal .columns4060>div.column:first-child {
+    width: 40%;
 }
+
 .reveal .columns4060 div.column:not(:first-child) {
-  width: 60%;
-}      
-.reveal .columns6040 > div.column:first-child {
-  width: 60%;
+    width: 60%;
 }
+
+.reveal .columns6040>div.column:first-child {
+    width: 60%;
+}
+
 .reveal .columns6040 div.column:not(:first-child) {
-  width: 40%;
-}      
+    width: 40%;
+}

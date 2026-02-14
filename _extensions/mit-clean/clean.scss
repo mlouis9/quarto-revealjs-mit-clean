@@ -44,26 +44,16 @@ $right-arrow: "\2192";
     right: 30px;
     z-index: 30;
     pointer-events: none;
-    
+
     /* 1. Define dimensions explicitly (needed for background images) */
-    width: 100px;  /* Adjust to match your SVG's aspect ratio */
+    width: 100px;
+    /* Adjust to match your SVG's aspect ratio */
     height: 40px;
-    
+
     /* 2. Point to the image relative to THIS scss file */
     /* Quarto will resolve this path correctly regardless of installation method */
-    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFk
-b2JlIElsbHVzdHJhdG9yIDI3LjUuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246
-IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5z
-PSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMu
-b3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNjgwIDEwNDAi
-IGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE2ODAgMTA0MCIgeG1sOnNwYWNlPSJwcmVzZXJ2
-ZSI+CjxwYXRoIGZpbGw9IiM3NTAwMTQiIGQ9Ik04ODAsODc5LjI1MjA4aDE2MHYtNDgwSDg4MFY4
-NzkuMjUyMDh6IE0xMTIwLDMxOS4yNTIwOGg0MDB2LTE2MGgtNDAwVjMxOS4yNTIwOHogTTg4MCwx
-NTkuMjUyMTFoMTYwdjE2MAoJSDg4MFYxNTkuMjUyMTF6IE02NDAsODc5LjI1MjA4aDE2MHYtNzIw
-SDY0MFY4NzkuMjUyMDh6IE00MDAsNzE5LjI1MjA4aDE2MHYtNTYwSDQwMFY3MTkuMjUyMDh6IE0x
-NjAsODc5LjI1MjA4aDE2MHYtNzIwSDE2MAoJVjg3OS4yNTIwOHogTTExMjAsODc5LjI1MjA4aDE2
-MHYtNDgwaC0xNjBWODc5LjI1MjA4eiIvPgo8L3N2Zz4K");
-    
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI3LjUuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNjgwIDEwNDAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE2ODAgMTA0MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGZpbGw9IiM3NTAwMTQiIGQ9Ik04ODAsODc5LjI1MjA4aDE2MHYtNDgwSDg4MFY4NzkuMjUyMDh6IE0xMTIwLDMxOS4yNTIwOGg0MDB2LTE2MGgtNDAwVjMxOS4yNTIwOHogTTg4MCwxNTkuMjUyMTFoMTYwdjE2MAoJSDg4MFYxNTkuMjUyMTF6IE02NDAsODc5LjI1MjA4aDE2MHYtNzIwSDY0MFY4NzkuMjUyMDh6IE00MDAsNzE5LjI1MjA4aDE2MHYtNTYwSDQwMFY3MTkuMjUyMDh6IE0xNjAsODc5LjI1MjA4aDE2MHYtNzIwSDE2MAoJVjg3OS4yNTIwOHogTTExMjAsODc5LjI1MjA4aDE2MHYtNDgwaC0xNjBWODc5LjI1MjA4eiIvPgo8L3N2Zz4K");
+
     /* 3. Ensure it scales correctly */
     background-size: contain;
     background-repeat: no-repeat;

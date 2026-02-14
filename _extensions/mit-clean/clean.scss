@@ -51,7 +51,18 @@ $right-arrow: "\2192";
     
     /* 2. Point to the image relative to THIS scss file */
     /* Quarto will resolve this path correctly regardless of installation method */
-    background-image: url("assets/mit_logo_std_rgb_mit-red.svg");
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFk
+b2JlIElsbHVzdHJhdG9yIDI3LjUuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246
+IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5z
+PSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMu
+b3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNjgwIDEwNDAi
+IGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE2ODAgMTA0MCIgeG1sOnNwYWNlPSJwcmVzZXJ2
+ZSI+CjxwYXRoIGZpbGw9IiM3NTAwMTQiIGQ9Ik04ODAsODc5LjI1MjA4aDE2MHYtNDgwSDg4MFY4
+NzkuMjUyMDh6IE0xMTIwLDMxOS4yNTIwOGg0MDB2LTE2MGgtNDAwVjMxOS4yNTIwOHogTTg4MCwx
+NTkuMjUyMTFoMTYwdjE2MAoJSDg4MFYxNTkuMjUyMTF6IE02NDAsODc5LjI1MjA4aDE2MHYtNzIw
+SDY0MFY4NzkuMjUyMDh6IE00MDAsNzE5LjI1MjA4aDE2MHYtNTYwSDQwMFY3MTkuMjUyMDh6IE0x
+NjAsODc5LjI1MjA4aDE2MHYtNzIwSDE2MAoJVjg3OS4yNTIwOHogTTExMjAsODc5LjI1MjA4aDE2
+MHYtNDgwaC0xNjBWODc5LjI1MjA4eiIvPgo8L3N2Zz4K");
     
     /* 3. Ensure it scales correctly */
     background-size: contain;

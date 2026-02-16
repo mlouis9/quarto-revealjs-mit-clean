@@ -372,3 +372,53 @@ $right-arrow: "\2192";
 .reveal .columns6040 div.column:not(:first-child) {
     width: 40%;
 }
+
+/* =========================
+   TITLE SLIDE GLASS PANEL
+   ========================= */
+
+#title-slide.with-bg-box {
+    text-align: center;
+
+    /* Default glass settings */
+    --glass-opacity: 0.25;
+    --glass-blur: 12px;
+
+    display: inline-block;
+    padding: 2rem 3rem;
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================
+   GLASS OPACITY PRESETS
+   ========================= */
+
+/* Very subtle glass */
+#title-slide.with-bg-box.light {
+    --glass-opacity: 0.15;
+}
+
+/* Balanced glass (default feel) */
+#title-slide.with-bg-box.medium {
+    --glass-opacity: 0.30;
+}
+
+/* Strong / high-contrast glass */
+#title-slide.with-bg-box.heavy {
+    --glass-opacity: 0.55;
+}
+
+
+/* Bigger title */
+#title-slide .title {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+

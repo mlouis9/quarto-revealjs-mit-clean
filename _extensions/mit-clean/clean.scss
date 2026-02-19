@@ -416,8 +416,8 @@ $right-arrow: "\2192";
 }
 
 
-/* Bigger title */
-#title-slide .title {
+/* Optional large title mode */
+#title-slide.large-title .title {
     font-size: 2.5em;
     font-weight: 700;
 }

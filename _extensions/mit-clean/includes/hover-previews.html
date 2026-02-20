@@ -1,0 +1,109 @@
+<div id="custom-hover-tooltip"
+    style="display: none; position: fixed; z-index: 1000; background: white; border: 1px solid #ccc; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); max-width: 450px; border-radius: 8px; pointer-events: none;">
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tooltip = document.getElementById('custom-hover-tooltip');
+        const xrefs = window.document.querySelectorAll('a.quarto-xref');
+
+        xrefs.forEach(link => {
+            const findTargetElements = () => {
+                const rawHref = link.getAttribute('href');
+                if (!rawHref) return { img: null, cap: null, slide: null };
+
+                // Handle both #/fig-id (Reveal.js) and #fig-id (Standard)
+                const targetId = rawHref.startsWith('#/') ? rawHref.replace('#/', '#') : rawHref;
+                let targetEl = null;
+                try { targetEl = document.querySelector(targetId); } catch (e) { }
+
+                let img = null;
+                let cap = null;
+                let slide = null;
+
+                // 1. Try to find by ID (Standard way)
+                if (targetEl) {
+                    slide = targetEl.closest('section.slide');
+                    img = targetEl.tagName === 'IMG' ? targetEl : targetEl.querySelector('img');
+                    cap = targetEl.querySelector('.caption, figcaption') ||
+                        (img && img.nextElementSibling?.classList.contains('caption') ? img.nextElementSibling : null);
+                }
+
+                // 2. Fallback: Search by link text (e.g., "Figure 1")
+                if (!img) {
+                    const linkText = link.textContent.trim().replace(/\u00a0/g, ' '); // Normalize spaces
+                    const allCaptions = document.querySelectorAll('.caption, figcaption');
+
+                    for (let c of allCaptions) {
+                        // Use textContent because innerText is empty for hidden slides
+                        const capText = c.textContent.replace(/\u00a0/g, ' ').trim();
+                        if (capText.startsWith(linkText)) {
+                            cap = c;
+                            img = c.previousElementSibling?.tagName === 'IMG'
+                                ? c.previousElementSibling
+                                : c.parentElement.querySelector('img');
+                            slide = c.closest('section.slide');
+                            if (img) break;
+                        }
+                    }
+                }
+                return { img, cap, slide };
+            };
+
+            // Fix Click Navigation
+            link.addEventListener('click', (e) => {
+                const { slide } = findTargetElements();
+                if (slide && typeof Reveal !== 'undefined') {
+                    e.preventDefault();
+                    const indices = Reveal.getIndices(slide);
+                    Reveal.slide(indices.h, indices.v);
+                }
+            });
+
+            // Fix Hover Preview
+            link.addEventListener('mouseenter', (e) => {
+                const { img, cap } = findTargetElements();
+                if (img) {
+                    tooltip.innerHTML = '';
+                    const container = document.createElement('div');
+                    container.className = 'quarto-figure';
+
+                    const newImg = img.cloneNode(true);
+                    // Remove Reveal.js specific classes that might force it to full-screen
+                    newImg.classList.remove('r-stretch', 'stretch', 'quarto-discovered-setup');
+                    newImg.style.display = 'block';
+                    newImg.style.maxWidth = '100%';
+                    newImg.style.height = 'auto';
+
+                    // Force source if Quarto lazy-loaded it
+                    if (newImg.hasAttribute('data-src')) newImg.src = newImg.getAttribute('data-src');
+
+                    container.appendChild(newImg);
+
+                    if (cap) {
+                        const newCap = cap.cloneNode(true);
+                        newCap.style.fontSize = '0.8em';
+                        newCap.style.marginTop = '8px';
+                        container.appendChild(newCap);
+                    }
+
+                    tooltip.appendChild(container);
+                    tooltip.style.display = 'block';
+
+                    // Positioning
+                    const rect = link.getBoundingClientRect();
+                    const tooltipWidth = 400;
+                    let left = rect.left;
+                    if (left + tooltipWidth > window.innerWidth) left = window.innerWidth - tooltipWidth - 20;
+
+                    tooltip.style.left = Math.max(10, left) + 'px';
+                    tooltip.style.top = (rect.bottom + 10) + 'px';
+                }
+            });
+
+            link.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+        });
+    });
+</script>

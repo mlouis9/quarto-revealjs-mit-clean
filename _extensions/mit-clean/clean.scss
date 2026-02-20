@@ -422,3 +422,15 @@ $right-arrow: "\2192";
     font-weight: 700;
 }
 
+.list-implies {
+    // This targets the list itself
+    list-style-type: "$\Rightarrow$ "; // You can use a string directly here
+    padding-left: 1em;
+
+    li::marker {
+        content: "\21D2 \00a0"; // \00a0 is a non-breaking space
+        color: #750014;
+        font-size: 1.3em;
+        font-family: "Cambria Math", "STIX General", serif; // Ensures the arrow looks like the LaTeX version
+    }
+}

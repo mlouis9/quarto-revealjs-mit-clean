@@ -179,7 +179,7 @@ $right-arrow: "\2192";
     }
 }
 
-.reveal ul ul {
+.reveal ul ul:not(.list-implies) {
     list-style: none;
 
     li:before {
@@ -423,18 +423,27 @@ $right-arrow: "\2192";
 }
 
 .list-implies {
-    // This targets the list itself
-    list-style-type: "$\Rightarrow$ "; // You can use a string directly here
-    padding-left: 1em;
+    list-style-type: none; // Clear default bullets
+    padding-left: 1.5em;
 
+    li {
+        position: relative;
+    }
+
+    // This targets the marker for both top-level and nested .list-implies
     li::marker {
-        content: "\21D2 \00a0"; // \00a0 is a non-breaking space
-        color: #750014;
-        font-size: 1.3em;
-        font-family: "Cambria Math", "STIX General", serif; // Ensures the arrow looks like the LaTeX version
+        content: "\21D2 \00a0";
+        color: $mit-red; // Force it to MIT Red
+        font-size: 1.2em;
+        font-family: "Cambria Math", "STIX General", serif;
+    }
+
+    // Ensure nested lists don't inherit the :before arrow from the general rule
+    ul li:before {
+        content: none !important;
     }
 }
 
 .reveal .tight {
-  margin-top: -1.3em;
+    margin-top: -1.3em;
 }

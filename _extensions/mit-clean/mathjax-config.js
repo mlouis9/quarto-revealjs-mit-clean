@@ -4,7 +4,10 @@ window.MathJax = {
     displayMath: [['\\[', '\\]']],
     processEscapes: true,
     processRefs: true,
-    processEnvironments: true
+    processEnvironments: true,
+    macros: {
+      angstrom: "\\unicode{x212B}"
+    }
   },
   chtml: {
     font: 'mathjax-asana'
